@@ -48,7 +48,7 @@ app.use(cookieParser());
 hbs.registerHelper("dateFormat", function (date, options) {
   const formatToUse =
     (arguments[1] && arguments[1].hash && arguments[1].hash.format) ||
-    "DD/MM/YYYY";
+    "YYYY-MM-DD";
   return moment(date).format(formatToUse);
 });
 // Express View engine setup

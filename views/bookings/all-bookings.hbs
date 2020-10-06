@@ -8,6 +8,7 @@
 <div id="bookings">
   {{#each bookings}}
   <div id="bookings-details">
+    <p style="text-align: center; color: rgb(38, 75, 114); font-weight: bolder;" id="remainingDays-{{@index}}"></p>
     <h2 class="your-booking-title">{{bookingReference}}</h2>
     <p>Departure Airport: <span>{{departureAirport}}</span></p>
     <p>Departure Date: <span id="date-{{@index}}">{{dateFormat departureDate}}</p>
@@ -219,4 +220,22 @@
   }
   startMap({{ bookings.length }})
 
+
+function countRemainingDays(nb) {
+  for(i = 0; i < nb; i++) {
+    const departureDate = document.getElementById("date-" + i).innerHTML
+    const date1 = new Date(departureDate)
+    const date2 = new Date()
+    console.log(date1)
+    const DifferenceInTime = date2.getTime() - date1.getTime()
+    const DifferenceInDays = Math.round(-DifferenceInTime / (1000 * 3600 * 24))
+    const remainingDays = document.getElementById("remainingDays-" + i)
+    if(date1 < date2) {
+      remainingDays.innerHTML = `You went there ${-DifferenceInDays} days ago`
+    } else {
+        remainingDays.innerHTML = `Travel in ${DifferenceInDays} days`
+    }
+  }
+}
+countRemainingDays({{bookings.length}})
 </script>
