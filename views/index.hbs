@@ -1,0 +1,27 @@
+<!--<div class="vimeo-wrapper">
+  <iframe src="https://player.vimeo.com/video/337430512?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0"
+    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>-->
+
+<div class="container-home">
+{{#if user}}
+<div id="intro">
+<h2>Welcome {{user.username}}!</h2>
+<p>Your TravelBuddy is ready! You just need to enter your booking number, city of depart and city of arrival to receive travel
+  suggestions from locals and fellow travellers alike.</p>
+<button><a href="/bookings/add">Add a booking</a></button>
+<button><a href="/bookings/">View bookings</a></button>
+</div>
+{{else}}
+
+<div id="description">
+<h2>Introducing {{title}} </h2>
+<h4>- Your new best buddy, designed for travellers on the go</h4>
+<p>An all-in-one platform, TravelBuddy offers tips on activities for travellers submitted by both
+locals and tourists alike.</p>
+<p>Just enter your travel booking information to receive suggestions on different activities, sights and tours to try. You can search through different activities and even post your own suggestions.</p>
+<button><a href="/auth/signup">Sign up</a></button>
+<button><a href="/auth/login">Log in</a></button>
+</div>
+{{/if}}
+</div>

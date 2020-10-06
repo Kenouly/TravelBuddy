@@ -1,0 +1,20 @@
+<div class="container-home">
+  <h2 class="form-title">Add activity</h2>
+ <form action="/bookings/{{_id}}/add-activities" method="post" enctype="multipart/form-data">
+  <div id="activities-form">
+    <label for="activity-name">Name</label><br>
+    <input type="text" placeholder="Name" name="name"><br>
+    <label for="activity-address">Address</label><br>
+    <input type="text" placeholder="Address" name="address"><br>
+    <label for="activity-picture">Picture</label><br>
+    <input type="file" name="picture"><br>
+    <label for="location">City</label><br>
+    <input type="text" name="location" value="{{arrivalAirport}}"><br>
+    <button type="submit">Add activity</button>
+  </div>
+      {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+      {{/if}}
+</form>
+</div>
+

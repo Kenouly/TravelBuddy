@@ -1,0 +1,50 @@
+<div id="booking-details">
+  <h2 class="your-booking-title">Your booking</h2>
+  <p>Booking Reference: <span>{{booking.bookingReference}}</span></p>
+  <p>Departure Airport: <span>{{booking.departureAirport}}</span></p>
+  <p>Departure Date: <span>{{dateFormat booking.departureDate}}</span></p>
+  <p>Departure Time: <span>{{booking.departureTime}}</span></p>
+  <p>Arrival Airport: <span>{{booking.arrivalAirport}}</span></p>
+  <p>Arrival Date: <span>{{dateFormat booking.arrivalDate}}</span></p>
+  <p>Arrival Time: <span>{{booking.arrivalTime}}</span></p>
+  <p>Return Date: <span>{{dateFormat booking.returnDate}}</span></p>
+  <p>Return Time: <span>{{booking.returnTime}}</span></p>
+  <h4 style="text-decoration: underline;">Arrival position</h4>
+  <p>Lat: <span>{{booking.latitude}}</span></p>
+  <p>Long: <span>{{booking.longitude}}</span></p>
+  <a href="/bookings/{{booking._id}}/edit">Edit</a>
+  <a href="/bookings/{{booking._id}}/delete">Delete</a>
+</div>
+<div id="booking-suggestions">
+  <div id="our-suggestions">
+    <h2 class="suggestions-title">Our suggestions</h2>
+    {{#each topActivities}}
+    <div id="our-suggestions-details">
+      <div class="image-container">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=150&photoreference={{photos.[0].photo_reference}}&key=AIzaSyAT6b8kxnytHUgolGq4A89WLwyW0XchJ84">
+      </div>
+      <h4>{{name}}</h4>
+      <p>{{formatted_address}}</p>
+      <a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a>
+    </div>
+    {{/each}}
+  </div>
+
+    <div id="your-suggestions">
+      <div>
+      <h2 class="suggestions-title">Your suggestions</h2>
+      <a class="add-btn" href="/bookings/{{booking._id}}/add-activities">Add an activity</a>
+      </div>
+      {{#each airportActivities}}
+      <div id="your-suggestions-details">
+        <div class="image-container">
+        <img src="{{picture}}">
+        </div>
+        <h4>{{name}}</h4>
+        <p>{{address}}</p>
+        <a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a>
+        <a href="/bookings/{{_id}}/delete-activity">Delete</a>
+      </div>
+      {{/each}}
+    </div>
+</div>

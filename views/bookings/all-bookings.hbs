@@ -1,0 +1,222 @@
+<div id="intro-bookings">
+<h2 class="welcome-title">Welcome {{user}},</h2>
+<h2 class="booking-title">Overview of your Bookings</h2>
+</div>
+<div id="map" style="height: 500px; width: 100%; margin-bottom: 30px;"></div>
+<a class="add-btn" href="/bookings/add">Add a booking</a>
+
+<div id="bookings">
+  {{#each bookings}}
+  <div id="bookings-details">
+    <h2 class="your-booking-title">{{bookingReference}}</h2>
+    <p>Departure Airport: <span>{{departureAirport}}</span></p>
+    <p>Departure Date: <span id="date-{{@index}}">{{dateFormat departureDate}}</p>
+    <p>Departure Time: <span>{{departureTime}}</span></p>
+    <p>Arrival Airport: <span>{{arrivalAirport}}</span></p>
+    <p>Arrival Date: <span>{{dateFormat arrivalDate}}</span></p>
+    <p>Arrival Time: <span>{{arrivalTime}}</span></p>
+    <p>Return Date: <span>{{dateFormat returnDate}}</span></p>
+    <p>Return Time: <span>{{returnTime}}</span></p>
+    <h4 style="text-decoration: underline;">Arrival position</h4>
+    <p>Latitude: <span id="lat-{{@index}}">{{latitude}}</span></p>
+    <p>Longitude: <span id="lng-{{@index}}">{{longitude}}</span></p>
+    <a href="/bookings/{{_id}}">View</a>
+    <a href="/bookings/{{_id}}/delete">Delete</a>
+  </div>
+  {{/each}}
+</div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT6b8kxnytHUgolGq4A89WLwyW0XchJ84"></script>
+
+<script type="text/javascript">
+  function startMap(nb) {
+    const stylesArray = [
+      {
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#242f3e"
+          }
+        ]
+      },
+      {
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#746855"
+          }
+        ]
+      },
+      {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#242f3e"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.locality",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#d59563"
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#d59563"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#263c3f"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#6b9a76"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#38414e"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#212a37"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#9ca5b3"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#746855"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#1f2835"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#f3d19c"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#2f3948"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.station",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#d59563"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#17263c"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#515c6d"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#17263c"
+          }
+        ]
+      }
+    ]
+    const map = new google.maps.Map(
+      document.getElementById('map'), {
+      zoom: 2,
+      center: {
+        lat: 52.379189,
+        lng: 4.899431
+      },
+      mapTypeId: 'roadmap',
+      styles: stylesArray
+    }
+    );
+    for (i = 0; i < nb; i++) {
+      updateMap(map, parseFloat(document.getElementById("lat-" + i).innerHTML), parseFloat(document.getElementById("lng-" + i).innerHTML), document.getElementById("date-"+ i).innerHTML);
+    }
+  }
+  function updateMap(map, latitude, longitude, date) {
+    const marker = new google.maps.Marker({
+      position: {
+        lat: latitude,
+        lng: longitude
+      },
+      map: map,
+      label: { color: 'white', fontSize: '12px', text: date }
+    });
+  }
+  startMap({{ bookings.length }})
+
+</script>

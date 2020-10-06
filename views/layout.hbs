@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <nav>
+      <ul>
+        <li id="logo">
+          <a href="/"><img src="../images/logo.png"></a>
+        </li>
+        <li id="navigation">
+          {{#if user}}
+            <a href="/">Home</a> <span> | </span>
+            <a href="/bookings">Bookings</a> <span> | </span>
+            <form id="logout-form" action="/auth/logout" method="POST">
+              <button id="logout">Log out</button><span> | </span>
+            </form>
+          {{else}}
+            <a href="/auth/signup">Sign up</a> <span> | </span>
+            <a href="/auth/login">Log in</a> <span> | </span>
+          {{/if}}
+        </li>
+      </ul>
+    </nav>
+  {{{body}}}
+    <footer>
+      <p><a href="mailto:kenouly.lovan@gmail.com">Contact</a></p>
+      <p>©By Kenouly - 2020</p>
+    </footer>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://unpkg.com/fuse.js@2.5.0/src/fuse.min.js'></script>
+<script src='https://screenfeedcontent.blob.core.windows.net/html/airports.js'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="/javascripts/script.js"></script>
+<script src="/javascripts/airport.js"></script>
+<script src="/javascripts/maps.js"></script>
+
+</body>
+</html>
