@@ -303,6 +303,18 @@ border-radius: 5px;
   font-weight: normal;
 }
 
+#bookings-details button {
+  background-color: rgb(38, 75, 114);
+  border: solid rgb(38, 75, 114) 1px;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+
+#bookings-details a {
+  color: white;
+  text-decoration: none;
+}
+
 #intro-bookings {
   padding: 20px 100px;
 }
@@ -329,6 +341,18 @@ border-radius: 5px;
 
 #booking-details span {
   font-weight: normal;
+}
+
+#booking-details button {
+  background-color: rgb(38, 75, 114);
+  border: solid rgb(38, 75, 114) 1px;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+
+#booking-details a {
+  color: white;
+  text-decoration: none;
 }
 
 #booking-suggestions {
@@ -395,6 +419,18 @@ border-radius: 5px;
   width: 15%
 }
 
+#our-suggestions-details button {
+  background-color: rgb(38, 75, 114);
+  border: solid rgb(38, 75, 114) 1px;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+
+#our-suggestions-details a {
+  color: white;
+  text-decoration: none;
+}
+
 #your-suggestions {
   display: flex;
   border: solid rgb(255, 255, 255, 0.5) 1px;
@@ -414,6 +450,18 @@ border-radius: 5px;
 
 #your-suggestions-details img {
   height: 150px;
+}
+
+#your-suggestions-details button {
+  background-color: rgb(38, 75, 114);
+  border: solid rgb(38, 75, 114) 1px;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+
+#your-suggestions-details a {
+  color: white;
+  text-decoration: none;
 }
 
 .add-btn {

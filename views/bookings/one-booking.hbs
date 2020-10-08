@@ -12,8 +12,8 @@
   <h4 style="text-decoration: underline;">Arrival position</h4>
   <p>Lat: <span>{{booking.latitude}}</span></p>
   <p>Long: <span>{{booking.longitude}}</span></p>
-  <a href="/bookings/{{booking._id}}/edit">Edit</a>
-  <a href="/bookings/{{booking._id}}/delete">Delete</a>
+  <button><a href="/bookings/{{booking._id}}/edit">Edit</a></button>
+  <button><a href="/bookings/{{booking._id}}/delete">Delete</a></button>
 </div>
 <div id="booking-suggestions">
   <div id="our-suggestions">
@@ -25,7 +25,7 @@
       </div>
       <h4>{{name}}</h4>
       <p>{{formatted_address}}</p>
-      <a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a>
+      <button><a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a></button>
     </div>
     {{/each}}
   </div>
@@ -42,8 +42,8 @@
         </div>
         <h4>{{name}}</h4>
         <p>{{address}}</p>
-        <a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a>
-        <a href="/bookings/{{_id}}/delete-activity">Delete</a>
+        <button><a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a></button>
+        <button><a href="/bookings/{{_id}}/delete-activity">Delete</a></button>
       </div>
       {{/each}}
     </div>

@@ -21,8 +21,8 @@
     <h4 style="text-decoration: underline;">Arrival position</h4>
     <p>Latitude: <span id="lat-{{@index}}">{{latitude}}</span></p>
     <p>Longitude: <span id="lng-{{@index}}">{{longitude}}</span></p>
-    <a href="/bookings/{{_id}}">View</a>
-    <a href="/bookings/{{_id}}/delete">Delete</a>
+    <button><a href="/bookings/{{_id}}">View</a></button>
+    <button><a href="/bookings/{{_id}}/delete">Delete</a></button>
   </div>
   {{/each}}
 </div>
