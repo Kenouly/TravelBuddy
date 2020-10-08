@@ -73,7 +73,7 @@ router.get('/:id', checkLogin, (req, res, next) => {
 
     Booking.findById(id)
         .then(booking => {
-            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+attractions+to+do+in+${booking.arrivalAirport}&rankby=prominence&key=AIzaSyAT6b8kxnytHUgolGq4A89WLwyW0XchJ84`
+            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+attractions+to+do+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
             return axios.get(url)
                 .then((responseFromApi) => {
                     const activities = responseFromApi.data.results
