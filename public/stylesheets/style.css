@@ -233,7 +233,7 @@ footer a {
   background-color: rgb(255, 255, 255, 0.5);
   width: 300px;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left:50%;
   transform: translate(-50%, -50%);
   padding: 50px 100px;
@@ -264,7 +264,7 @@ border-radius: 5px;
   display: inline-block;
   padding-bottom: 15px;
     position: absolute;
-    top: 15%;
+    top: 20%;
     left:50%;
     transform: translate(-50%, -50%);
 }
@@ -321,6 +321,17 @@ border-radius: 5px;
 
 #add-booking a {
   padding: 10px;
+}
+
+.add-booking-btn {
+  background-color: rgb(38, 75, 114);
+  color: white;
+  border: solid rgb(38, 75, 114) 1px;
+  border-radius: 5px;
+  padding: 5px 20px;
+  text-decoration: none;
+  position: relative;
+  left: 45%;
 }
 
 /*one-booking*/
@@ -464,7 +475,7 @@ border-radius: 5px;
   text-decoration: none;
 }
 
-.add-btn {
+.add-suggestions-btn {
   background-color: rgb(38, 75, 114);
   color: white;
   border: solid rgb(38, 75, 114) 1px;
@@ -473,7 +484,6 @@ border-radius: 5px;
   text-decoration: none;
   position: relative;
   left: 45%;
-  margin-right: 90%;
 }
 
 .your-booking-title {
