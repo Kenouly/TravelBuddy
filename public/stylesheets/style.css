@@ -459,6 +459,13 @@ border-radius: 5px;
   justify-content: space-around;
 }
 
+#hotels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 #our-suggestions-details {
   padding: 20px;
   width: 15%
@@ -496,6 +503,13 @@ border-radius: 5px;
 }
 
 #your-restaurants {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#your-hotels {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

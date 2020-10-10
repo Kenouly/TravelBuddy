@@ -50,6 +50,21 @@
         {{/each}}
       </div>
     </div>
+    <div id="our-hotels-container">
+      <h3>Hotels</h3>
+        <div id="hotels">
+          {{#each topHotels}}
+          <div id="our-suggestions-details">
+            <div class="image-container">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=150&photoreference={{photos.[0].photo_reference}}&key=AIzaSyDedKMdROnJNsdAzLTBJb-konj43sgxxVA">
+            </div>
+            <h4>{{name}}</h4>
+            <p>{{formatted_address}}</p>
+            <button><a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a></button>
+          </div>
+          {{/each}}
+          </div>
+      </div>
   </div>
 
   <div id="your-suggestions">
@@ -93,6 +108,24 @@
             {{/ifvalue}}
             {{/each}}
             </div>
+          </div>
+          <div id="your-hotels-container">
+            <h3>Hotels</h3>
+              <div id="your-hotels">
+                {{#each airportActivities}}
+                {{#ifvalue type value="Hotel"}}
+                  <div id="your-suggestions-details">
+                    <div class="image-container">
+                      <img src="{{picture}}">
+                    </div>
+                    <h4>{{name}}</h4>
+                    <p>{{address}}</p>
+                    <button><a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a></button>
+                    <button><a href="/bookings/{{_id}}/delete-activity">Delete</a></button>
+                  </div>
+                {{/ifvalue}}
+                {{/each}}
+              </div>
           </div>
       </div>
     </div>

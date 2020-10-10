@@ -75,6 +75,7 @@ router.get('/:id', checkLogin, (req, res, next) => {
         .then(booking => {
             const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+things+to+do+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
             const restaurantsUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+restaurants+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
+            const hotelsUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=best+hotels+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
             return axios.get(url)
                 .then((responseFromApi) => {
                     const activities = responseFromApi.data.results
@@ -85,10 +86,19 @@ router.get('/:id', checkLogin, (req, res, next) => {
                             const restaurants = responseFromApi.data.results
                             const topRestaurants = restaurants.splice(0, 5)
                             console.log(topRestaurants)
-                            Activity.find({location: booking.arrivalAirport})
-                                .then((result) => {
-                                    console.log(result)
-                                    res.render("bookings/one-booking", {booking, topActivities, topRestaurants, airportActivities : result, user })
+                            return axios.get(hotelsUrl)
+                                .then((responseFromApi) => {
+                                    const hotels = responseFromApi.data.results
+                                    const topHotels = hotels.splice(0, 5)
+                                    console.log(topHotels)
+                                    Activity.find({location: booking.arrivalAirport})
+                                        .then((result) => {
+                                            console.log(result)
+                                                res.render("bookings/one-booking", {booking, topActivities, topRestaurants, topHotels, airportActivities : result, user })
+                                            })
+                                            .catch(e => {
+                                                next(e)
+                                            })
                                 })
                                 .catch(e => {
                                     next(e)
