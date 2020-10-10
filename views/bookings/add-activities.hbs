@@ -2,6 +2,11 @@
   <h2 class="form-title">Add activity</h2>
  <form action="/bookings/{{_id}}/add-activities" method="post" enctype="multipart/form-data">
   <div id="activities-form">
+    <label for="type">Type</label><br>
+    <select id="type" name="type">
+      <option value="Sightseeing">Sightseeing</option>
+      <option value="Restaurant">Restaurant</option>
+    </select><br>
     <label for="activity-name">Name</label><br>
     <input type="text" placeholder="Name" name="name"><br>
     <label for="activity-address">Address</label><br>

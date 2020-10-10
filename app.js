@@ -51,6 +51,15 @@ hbs.registerHelper("dateFormat", function (date, options) {
     "YYYY-MM-DD";
   return moment(date).format(formatToUse);
 });
+
+hbs.registerHelper('ifvalue', function (conditional, options) {
+  if (options.hash.value == conditional) {
+    return options.fn(this)
+  } else {
+    return options.inverse(this);
+  }
+});
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({

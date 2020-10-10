@@ -73,16 +73,26 @@ router.get('/:id', checkLogin, (req, res, next) => {
 
     Booking.findById(id)
         .then(booking => {
-            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+attractions+to+do+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
+            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+things+to+do+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
+            const restaurantsUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=top+restaurants+in+${booking.arrivalAirport}&rankby=prominence&key=${process.env.MAPS_API_KEY}`
             return axios.get(url)
                 .then((responseFromApi) => {
                     const activities = responseFromApi.data.results
-                    const topActivities = activities.splice(0, 10)
+                    const topActivities = activities.splice(0, 5)
                     console.log(topActivities)
-                    Activity.find({location: booking.arrivalAirport})
-                        .then((result) => {
-                            console.log(result)
-                                res.render("bookings/one-booking", {booking, topActivities, airportActivities : result, user })
+                    return axios.get(restaurantsUrl)
+                        .then((responseFromApi) => {
+                            const restaurants = responseFromApi.data.results
+                            const topRestaurants = restaurants.splice(0, 5)
+                            console.log(topRestaurants)
+                            Activity.find({location: booking.arrivalAirport})
+                                .then((result) => {
+                                    console.log(result)
+                                    res.render("bookings/one-booking", {booking, topActivities, topRestaurants, airportActivities : result, user })
+                                })
+                                .catch(e => {
+                                    next(e)
+                                })
                         })
                         .catch(e => {
                             next(e)
@@ -148,14 +158,15 @@ router.get('/:id/add-activities', checkLogin, (req, res, next) => {
 })
 
 router.post('/:id/add-activities', checkLogin, uploadCloud.single('picture'), (req, res, next) => {
-    const { name, address, location } = req.body
+    const { name, address, location, type } = req.body
     const { id } = req.params
     console.log(req.file)
     Activity.create({
             name,
             address,
             picture: req.file.path,
-            location
+            location,
+            type
         })
         .then((activities) => {
             return activities.save();

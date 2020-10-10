@@ -15,37 +15,89 @@
   <button><a href="/bookings/{{booking._id}}/edit">Edit</a></button>
   <button><a href="/bookings/{{booking._id}}/delete">Delete</a></button>
 </div>
+
 <div id="booking-suggestions">
+
   <div id="our-suggestions">
     <h2 class="suggestions-title">Our suggestions</h2>
-    {{#each topActivities}}
-    <div id="our-suggestions-details">
-      <div class="image-container">
-        <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=150&photoreference={{photos.[0].photo_reference}}&key=AIzaSyDedKMdROnJNsdAzLTBJb-konj43sgxxVA">
+    <div id="our-sightseeings-container">
+      <h3>Sightseeings</h3>
+        <div id="sightseeings">
+        {{#each topActivities}}
+          <div id="our-suggestions-details">
+            <div class="image-container">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=150&photoreference={{photos.[0].photo_reference}}&key=AIzaSyDedKMdROnJNsdAzLTBJb-konj43sgxxVA">
+            </div>
+            <h4>{{name}}</h4>
+            <p>{{formatted_address}}</p>
+            <button><a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a></button>
+          </div>
+      {{/each}}
       </div>
-      <h4>{{name}}</h4>
-      <p>{{formatted_address}}</p>
-      <button><a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a></button>
     </div>
-    {{/each}}
+    <div id="our-restaurants-container">
+      <h3>Restaurants</h3>
+        <div id="restaurants">
+        {{#each topRestaurants}}
+          <div id="our-suggestions-details">
+            <div class="image-container">
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=150&photoreference={{photos.[0].photo_reference}}&key=AIzaSyDedKMdROnJNsdAzLTBJb-konj43sgxxVA">
+            </div>
+            <h4>{{name}}</h4>
+            <p>{{formatted_address}}</p>
+            <button><a href="https://www.google.com/search?q={{name}}%20{{plus_code.compound_code}}" target="_blank">Read more</a></button>
+          </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
 
-    <div id="your-suggestions">
-      <div>
+  <div id="your-suggestions">
+    <div id="your-suggestions-intro">
       <h2 class="suggestions-title">Your suggestions</h2>
       <a class="add-suggestions-btn" href="/bookings/{{booking._id}}/add-activities">Add an activity</a>
-      </div>
-      {{#each airportActivities}}
-      <div id="your-suggestions-details">
-        <div class="image-container">
-        <img src="{{picture}}">
-        </div>
-        <h4>{{name}}</h4>
-        <p>{{address}}</p>
-        <button><a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a></button>
-        <button><a href="/bookings/{{_id}}/delete-activity">Delete</a></button>
-      </div>
-      {{/each}}
     </div>
+    <div id="your-suggestions-container">
+      <div id="your-sightseeings-container">
+        <h3>Sightseeings</h3>
+          <div id="your-sightseeings">
+          {{#each airportActivities}}
+          {{#ifvalue type value="Sightseeing"}}
+            <div id="your-suggestions-details">
+              <div class="image-container">
+                <img src="{{picture}}">
+              </div>
+              <h4>{{name}}</h4>
+              <p>{{address}}</p>
+              <button><a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a></button>
+              <button><a href="/bookings/{{_id}}/delete-activity">Delete</a></button>
+            </div>
+          {{/ifvalue}}
+          {{/each}}
+          </div>
+        </div>
+        <div id="your-restaurants-container">
+          <h3>Restaurants</h3>
+            <div id="your-restaurants">
+            {{#each airportActivities}}
+            {{#ifvalue type value="Restaurant"}}
+              <div id="your-suggestions-details">
+                <div class="image-container">
+                  <img src="{{picture}}">
+                </div>
+                <h4>{{name}}</h4>
+                <p>{{address}}</p>
+                <p>{{type}}</p>
+                <button><a href="https://www.google.com/search?q={{name}}%20{{address}}" target="_blank">Read more</a></button>
+                <button><a href="/bookings/{{_id}}/delete-activity">Delete</a></button>
+              </div>
+            {{/ifvalue}}
+            {{/each}}
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-</div>
+
